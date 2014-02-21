@@ -221,9 +221,11 @@ static void focus(Client *c);
 static void focusin(XEvent *e);
 static void focusmon(const Arg *arg);
 static void focusstack(const Arg *arg);
+static Atom getatomprop(Client *c, Atom prop); 
 static unsigned long getcolor(const char *colstr, XftColor *color);
 static Bool getrootptr(int *x, int *y);
 static long getstate(Window w);
+static unsigned int getsystraywidth(); 
 static Bool gettextprop(Window w, Atom atom, char *text, unsigned int size);
 static void grabbuttons(Client *c, Bool focused);
 static void grabkeys(void);
@@ -1800,6 +1802,8 @@ setup(void) {
 	dc.xft.drawable = XftDrawCreate(dpy, dc.drawable, DefaultVisual(dpy, screen), DefaultColormap(dpy, screen));
 	dc.gc = XCreateGC(dpy, root, 0, NULL);
 	XSetLineAttributes(dpy, dc.gc, 1, LineSolid, CapButt, JoinMiter);
+ 	/* init system tray */
+	updatesystray(); 
 	/* init bars */
 	updatebars();
 	updatestatus();
