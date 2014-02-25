@@ -88,6 +88,7 @@ enum { NetSupported, NetSystemTray, NetSystemTrayOP, NetSystemTrayOrientation,
 	   NetWMWindowTypeDialog, NetLast }; /* EWMH atoms */
 enum { Manager, Xembed, XembedInfo, XLast }; /* Xembed atoms */
 enum { WMProtocols, WMDelete, WMState, WMTakeFocus, WMLast }; /* default atoms */
+
 enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkClock,
        ClkClientWin, ClkRootWin, ClkLast };             /* clicks */
 
@@ -508,8 +509,6 @@ buttonpress(XEvent *e) {
 		}
 		else if(ev->x < x + blw)
 			click = ClkLtSymbol;
-		else if(ev->x > selmon->ww - TEXTW(stext))
-			click = ClkStatusText;
 		else
 			click = ClkClock;
 	}
